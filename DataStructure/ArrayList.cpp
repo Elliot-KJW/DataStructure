@@ -41,6 +41,15 @@ size_t ArrayList<T>::size() const {
 }
 
 template <typename T>
+void ArrayList<T>::print() const{
+	for(size_t i = 0; i < used; i++) {
+		std::cout << data[i] << " ";
+	}
+	printf("\n");
+}
+}
+
+template <typename T>
 size_t ArrayList<T>::occurences(T target) const {
 	size_t n = 0;
 	for (int i = 0; i < used; i++) {
