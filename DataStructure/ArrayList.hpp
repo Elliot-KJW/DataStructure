@@ -4,6 +4,14 @@
 template <typename T>
 class ArrayList : public List<T> {
 public:
+	ArrayList(size_t capacity);
+	// postcondition: create init List with input capacity
+
+	ArrayList(const ArrayList<T>& source);
+	// postcondition: create List copied by source
+
+	virtual ~ArrayList();
+
 	void insert(T newEntry);
 	// precondition: used < CAPACITY
 	// postcondition: new Entry inserted in list
@@ -24,7 +32,7 @@ public:
 	// postcondition: print list data
 
 private:
-	static const size_t CAPACITY = 20;
-	T data[CAPACITY];
+	T* data;
 	size_t used = 0;
+	size_t capacity;
 };
