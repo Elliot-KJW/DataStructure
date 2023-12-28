@@ -1,8 +1,8 @@
 #include "ArrayList.cpp"
 
 int main() {
-	ArrayList<int> list = ArrayList<int>();
-	ArrayList<int> list2 = ArrayList<int>();
+	ArrayList<int> list;
+	ArrayList<int> list2;
 	list.insert(4);
 	list.insert(8);
 	list.insert(4);
@@ -13,7 +13,7 @@ int main() {
 	list2.insert(7);
 
 	list += list2;
-
+	
 	list.print();
 
 	std::cout << list.occurences(4) << std::endl;

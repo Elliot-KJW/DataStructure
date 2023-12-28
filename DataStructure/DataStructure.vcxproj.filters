@@ -23,6 +23,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="List.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="ArrayList.hpp">
       <Filter>헤더 파일</Filter>
     </ClInclude>

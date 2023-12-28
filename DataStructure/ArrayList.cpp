@@ -4,12 +4,7 @@
 #include <cassert>
 
 template <typename T>
-ArrayList<T>::ArrayList() {
-	this->used = 0;
-}
-
-template <typename T>
-void ArrayList<T>::insert(T newEntry) {
+ void ArrayList<T>::insert(T newEntry) {
 	assert(used < CAPACITY);
 	
 	data[used++] = newEntry;
@@ -32,7 +27,7 @@ void ArrayList<T>::operator +=(const ArrayList<T>& addend) {
 	assert(used + addend.size() <= CAPACITY);
 
 	std::copy(addend.data, addend.data + addend.size(), data + used);
-	used += addend.size();
+	this->used += addend.size();
 }
 
 template <typename T>
@@ -47,7 +42,6 @@ void ArrayList<T>::print() const{
 	}
 	printf("\n");
 }
-}
 
 template <typename T>
 size_t ArrayList<T>::occurences(T target) const {
@@ -59,12 +53,4 @@ size_t ArrayList<T>::occurences(T target) const {
 	}
 
 	return n;
-}
-
-template <typename T>
-void ArrayList<T>::print() const{
-	for(size_t i = 0; i < used; i++) {
-		std::cout << data[i] << " ";
-	}
-	printf("\n");
 }

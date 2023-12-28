@@ -1,30 +1,22 @@
 #pragma once
-#include "List.hpp"
 
 template <typename T>
-class ArrayList : public List<T> {
+class List {
 public:
-	void insert(T newEntry);
+	virtual void insert(T newEntry) = 0;
 	// precondition: used < CAPACITY
 	// postcondition: new Entry inserted in list
 
-	void remove(T target);
+	virtual void remove(T target) = 0;
 	// precondition: used > 0
 	// postcondition: remove one Entry equal to target 
 
-	void operator +=(const ArrayList<T>& addend);
-
-	size_t size() const;
+	virtual size_t size() const = 0;
 	// postcondition: return used 
 
-	size_t occurences(T target) const;
+	virtual size_t occurences(T target) const = 0;
 	// postcondition: retunr num of target number in data 
 
-	void print() const;
+	virtual void print() const = 0;
 	// postcondition: print list data
-
-private:
-	static const size_t CAPACITY = 20;
-	T data[CAPACITY];
-	size_t used = 0;
 };
