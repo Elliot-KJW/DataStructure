@@ -12,6 +12,13 @@ public:
 
 	virtual ~ArrayList();
 
+	ArrayList<T>& operator =(const ArrayList<T>& source);
+	// precondition: self assingment is not allowed
+	// postcondition: return new ArrayList copied by source
+
+	void reserve(size_t new_capacity);
+	// postcondition: reserve new capacity 
+
 	void insert(T newEntry);
 	// precondition: used < CAPACITY
 	// postcondition: new Entry inserted in list
@@ -19,6 +26,9 @@ public:
 	void remove(T target);
 	// precondition: used > 0
 	// postcondition: remove one Entry equal to target 
+
+
+	ArrayList<T> operator +(const ArrayList<T>& operand);
 
 	void operator +=(const ArrayList<T>& addend);
 

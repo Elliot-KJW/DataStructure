@@ -24,8 +24,42 @@ template <typename T>
 }
 
 template <typename T>
+ArrayList<T>& ArrayList<T>::operator =(const ArrayList<T>& source) {
+	T* new_data;
+
+	if (this == &source) {
+		return *this;
+	}
+
+	if (capacity != source.capacity) {
+		new_data = new T[source.capacity];
+		delete[] data;
+		this->capacity = source.capacity;
+		data = new_data;
+	}
+
+	this->used = source.used;
+	std::copy(source.data, source.data + used, data);
+	return *this;
+}
+
+template <typename T>
+void ArrayList<T>::reserve(size_t new_capacity) {
+	if (this->capacity == new_capacity) return;
+	if (new_capacity < this->used) new_capacity = this->used;
+
+	T* larger_data = new T[new_capacity];
+	std::copy(this->data, this->data + used, larger_data);
+	delete[] this->data;
+	this->data = larger_data;
+	this->capacity = new_capacity;
+}
+
+template <typename T>
  void ArrayList<T>::insert(T newEntry) {
-	assert(this->used < this->capacity);
+	 if (this->used == this->capacity) {
+		 this->reserve(used + 1);
+	 }
 	
 	data[this->used++] = newEntry;
 }
@@ -43,8 +77,19 @@ void ArrayList<T>::remove(T target) {
 }
 
 template <typename T>
+ArrayList<T> ArrayList<T>::operator+ (const ArrayList<T>& operand) {
+	ArrayList<T> result(this->size() + operand.size());
+	result += *this;
+	result += operand;
+
+	return result;
+}
+
+template <typename T>
 void ArrayList<T>::operator +=(const ArrayList<T>& addend) {
-	assert(this->used + addend.size() <= this->capacity);
+	if (this->used + addend.size() > this->capacity) {
+		this->reserve(this->used + addend.size());
+	}
 
 	std::copy(addend.data, addend.data + addend.size(), this->data + this->used);
 	this->used += addend.size();

@@ -6,6 +6,35 @@ int main() {
 	list.insert(4);
 	list.insert(8);
 	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+	list.insert(4);
+
+	std::cout << list.size() << "\n";
 
 	list.print();
 
@@ -19,7 +48,10 @@ int main() {
 	std::cout << list.occurences(4) << std::endl;
 
 	ArrayList<int> list3(list);
-	list.print();
+	list3.print();
+
+	list3 = list + list2;
+	list3.print();
 
 	return 0;
 }
