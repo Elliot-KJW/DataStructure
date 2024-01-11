@@ -32,8 +32,41 @@ size_t list_length(const Node<T>* head_ptr);
 
 template <typename T>
 void list_head_insert(Node<T>*& head_ptr, typename Node<T>::value_type& entry);
-// insert new node at front of node
+// insert new node at front of list
 
 template <typename T>
 void list_insert(Node<T>* previous_ptr, const typename Node<T>::value_type& entry);
 // insert new node at rear of node
+
+template <typename T>
+Node<T>* list_search(Node<T>* head_ptr, const typename Node<T>::value_type& target);
+// return a Node pointer to the first Node that contains target or NULL
+
+template <typename T>
+const Node<T>* list_search(const Node<T>* head_ptr, const typename Node<T>::value_type& target);
+// return a Node pointer to the first Node that contains target or NULL
+
+template <typename T>
+Node<T>* list_locate(Node<T>* head_ptr, size_t position);
+// precondition position >= 0
+// Find a node by its position in a linked list and if found, return a pointer to the node
+
+template <typename T>
+const Node<T>* list_locate(const Node<T>* head_ptr, size_t position);
+// precondition position >= 0
+// Find a node by its position in a linked list and if found, return a pointer to the node
+
+template <typename T>
+void list_copy(const Node<T>* source_ptr, Node<T>*& head_ptr, Node<T>*& tail_ptr);
+// return copied list of source
+
+template <typename T>
+void list_head_remove(Node<T>*& head_ptr);
+
+template <typename T>
+void list_remove(Node<T>* previous_ptr);
+// remove next node of previous_ptr
+
+template <typename T>
+void list_clear(Node<T>*& head_ptr);
+// remove all nodes of list and make empty list
