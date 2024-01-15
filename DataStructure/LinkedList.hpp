@@ -20,6 +20,10 @@ public:
 		list_clear(this->head_ptr);
 	}
 
+	size_t size() {
+		return many_nodes;
+	}
+
 	LinkedList<T>& operator =(const LinkedList<T>& source) {
 		if (this == &source) return *this;
 
@@ -49,6 +53,7 @@ public:
 		for (Node<T>* cursor = this->head_ptr; cursor != NULL; cursor = cursor->link()) {
 			std::cout << cursor->data() << " ";
 		}
+		std::cout << std::endl;
 	}
 
 	void insert(const typename Node<T>::value_type& entry) {
@@ -60,6 +65,43 @@ public:
 			tail_ptr->set_link(new Node<T>(entry, NULL));
 		}
 		this->many_nodes++;
+	}
+
+	bool erase_one(const typename Node<T>::value_type& target){
+		if (this->head_ptr->data() == target) {
+			list_head_remove(this->head_ptr);
+			return true;
+		}
+
+		Node<T>* previous = this->head_ptr;
+		for (Node<T>* cursor = this->head_ptr->link(); cursor != NULL; cursor = cursor->link()) {
+			if (cursor->data() == target) {
+				list_remove(previous);
+				return true;
+			}
+			previous = cursor;
+		}
+
+		return false;
+	}
+
+	size_t count(const typename Node<T>::value_type& target) {
+		size_t result = this->head_ptr->data() == target ? 1 : 0;
+	
+		Node<T>* cursor = this->head_ptr;
+		while ((cursor = list_search(cursor->link(), target)) != NULL) {
+			result++;
+		}
+
+		return result;
+	}
+
+	typename Node<T>::value_type grab() {
+		assert(size() > 0);
+
+		size_t position = rand() % this->size();
+
+		return ((Node<T>*)list_locate(this->head_ptr, position))->data();
 	}
 private:
 	Node<T>* head_ptr;

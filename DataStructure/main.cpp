@@ -102,10 +102,8 @@ void testLinkedList() {
 
 	LinkedList<int>list2(list);
 	list.print();
-	cout << endl;
 
 	list2.print();
-	cout << endl;
 	
 	LinkedList<int>list3;
 	list3.insert(10);
@@ -114,14 +112,55 @@ void testLinkedList() {
 
 	list = list3;
 	list.print();
-	cout << endl;
 
 	list2 += list3;
 	list2.print();
-	cout << endl;
 
 	LinkedList<int>list4;
 	list4 += list3;
 	list4.print();
-	cout << endl;
+
+	cout << list2.count(4) << endl;
+	cout << list2.count(10) << endl;
+	cout << list2.count(8) << endl << endl;
+
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl;
+	cout << list2.grab() << endl << endl;
+
+	list2.erase_one(8);
+	list2.erase_one(10);
+	list2.erase_one(10);
+	list2.erase_one(10);
+	list2.erase_one(10);
+	list2.erase_one(4);
+	list2.erase_one(4);
+	list2.print();
+
+	cout << list2.count(4) << endl;
+	cout << list2.count(10) << endl;
+	cout << list2.count(8) << endl;
+
 }
