@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="LinkedList.hpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node_iterator.hpp" />
+    <ClCompile Include="Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayList.hpp" />

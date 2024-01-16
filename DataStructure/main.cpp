@@ -1,14 +1,19 @@
 #include "ArrayList.hpp"
 #include "LinkedList.hpp"
+#include "Stack.hpp"
 
 using namespace std;
 
 void testArrayList();
-
 void testLinkedList();
+void testStack_checkingBalanecedParentheses();
+void testStack_evaluatingArithmeticExpressions();
+
 int main() {
 	//testArrayList();
-	testLinkedList();
+	//testLinkedList();
+	//testStack_checkingBalanecedParentheses();
+	//testStack_evaluatingArithmeticExpressions();
 
 	return 0;
 }
@@ -162,5 +167,74 @@ void testLinkedList() {
 	cout << list2.count(4) << endl;
 	cout << list2.count(10) << endl;
 	cout << list2.count(8) << endl;
+}
 
+void testStack_checkingBalanecedParentheses() {
+	string expression = "(((6+9)/3)*(6-4))";
+	Stack<char> stack(10);
+	for (char c : expression) {
+		if (c == '(') {
+			stack.push(c);
+		}
+		else if (c == ')') {
+			if (!stack.empty()) {
+				stack.pop();
+			}
+			else {
+				cout << "error" << endl;
+				return;
+			}
+		}
+	}
+	
+	if (stack.size() == 0) {
+		cout << "success!!" << endl;
+	}
+	else {
+		cout << "error" << endl;
+	}
+}
+
+void testStack_evaluatingArithmeticExpressions() {
+	string expression = "(((6+9)/3)*(6-4))";
+	Stack<double> numbers(10);
+	Stack<char> operators(10);
+
+
+	for (char c : expression) {
+		if (isdigit(c)) {
+			numbers.push(c - '0');
+		}
+		else if (strchr("+-*/", c) != NULL) {
+			operators.push(c);
+		}
+		else if (c == ')') {
+			double number1 = numbers.pop();
+			double number2 = numbers.pop();
+		
+			switch (operators.pop()) {
+			case '+':
+				number2 += number1;
+				break;
+			case '-':
+				number2 -= number1;
+				break;
+			case '*':
+				number2 *= number1;
+				break;
+			case '/':
+				number2 /= number1;
+				break;
+			}
+
+			numbers.push(number2);
+		}
+
+		cout << c << endl;
+		numbers.print();
+		operators.print();
+		cout << endl;
+	}
+	numbers.print();
+	cout << numbers.top() << endl;
 }

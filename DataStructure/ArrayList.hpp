@@ -67,17 +67,21 @@ public:
 		data[this->used++] = newEntry;
 	}
 	
-	void remove(T target) {
+	T& remove(T target) {
 	// precondition: used > 0
 	// postcondition: remove one Entry equal to target 
 		assert(this->used > 0);
 
+		T result;
 		for (int i = 0; i < this->used; i++) {
 			if (this->data[i] == target) {
+				result = this->data[i];
 				this->data[i] = this->data[--this->used];
 				break;
 			}
 		}
+
+		return result;
 	}
 
 	ArrayList<T> operator +(const ArrayList<T>& operand) {
