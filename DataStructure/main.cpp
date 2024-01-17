@@ -1,6 +1,7 @@
 #include "ArrayList.hpp"
 #include "LinkedList.hpp"
-#include "Stack.hpp"
+#include "ArrayStack.hpp"
+#include "NodeStack.hpp"
 
 using namespace std;
 
@@ -12,8 +13,8 @@ void testStack_evaluatingArithmeticExpressions();
 int main() {
 	//testArrayList();
 	//testLinkedList();
-	//testStack_checkingBalanecedParentheses();
-	//testStack_evaluatingArithmeticExpressions();
+	testStack_checkingBalanecedParentheses();
+	testStack_evaluatingArithmeticExpressions();
 
 	return 0;
 }
@@ -171,7 +172,7 @@ void testLinkedList() {
 
 void testStack_checkingBalanecedParentheses() {
 	string expression = "(((6+9)/3)*(6-4))";
-	Stack<char> stack(10);
+	NodeStack<char> stack;
 	for (char c : expression) {
 		if (c == '(') {
 			stack.push(c);
@@ -197,8 +198,8 @@ void testStack_checkingBalanecedParentheses() {
 
 void testStack_evaluatingArithmeticExpressions() {
 	string expression = "(((6+9)/3)*(6-4))";
-	Stack<double> numbers(10);
-	Stack<char> operators(10);
+	NodeStack<double> numbers;
+	NodeStack<char> operators;
 
 
 	for (char c : expression) {

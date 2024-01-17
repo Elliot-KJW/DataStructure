@@ -2,9 +2,9 @@
 #include <iostream>
 
 template <typename T>
-class Stack {
+class ArrayStack {
 public:
-	Stack(size_t capacity) {
+	ArrayStack(size_t capacity) {
 		this->data = new T[capacity];
 		this->used = 0;
 		this->capacity = capacity;
@@ -30,7 +30,7 @@ public:
 
 	T& pop() {
 		assert(!this->empty());
-		T result = this->data[used - 1];
+		T& result = this->data[used - 1];
 		--used;
 
 		return result;

@@ -49,7 +49,7 @@ size_t list_length(const Node<T>* head_ptr) {
 // return numbers of nodes in a linked list
 	size_t answer = 0;
 	const Node<T>* cursor;
-	for (cursor = head_ptr; cursor != NULL; cursor = cursor->link) {
+	for (cursor = head_ptr; cursor != NULL; cursor = cursor->link()) {
 		answer++;
 	}
 
