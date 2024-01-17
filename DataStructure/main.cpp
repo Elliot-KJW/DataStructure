@@ -1,4 +1,4 @@
-#include "ArrayList.hpp"
+﻿#include "ArrayList.hpp"
 #include "LinkedList.hpp"
 #include "ArrayStack.hpp"
 #include "NodeStack.hpp"
@@ -7,15 +7,18 @@ using namespace std;
 
 void testArrayList();
 void testLinkedList();
-void testStack_checkingBalanecedParentheses();
-void testStack_evaluatingArithmeticExpressions();
+void testStack_checkingBalanecedParentheses(string expression);
+void testStack_evaluatingArithmeticExpressions(string expression);
+void testStack_evaluatingPostfixExpressions(string expression);
+void testStack_translatingInfixToPostfixNotation(string expression);
+
 
 int main() {
 	//testArrayList();
 	//testLinkedList();
-	testStack_checkingBalanecedParentheses();
-	testStack_evaluatingArithmeticExpressions();
-
+	//testStack_checkingBalanecedParentheses("(((6+9)/3)*(6-4))");
+	//testStack_evaluatingArithmeticExpressions("(((6+9)/3)*(6-4))");
+	testStack_translatingInfixToPostfixNotation("3 * X + ( Y - 12 ) - Z");
 	return 0;
 }
 
@@ -170,8 +173,7 @@ void testLinkedList() {
 	cout << list2.count(8) << endl;
 }
 
-void testStack_checkingBalanecedParentheses() {
-	string expression = "(((6+9)/3)*(6-4))";
+void testStack_checkingBalanecedParentheses(string expression) {
 	NodeStack<char> stack;
 	for (char c : expression) {
 		if (c == '(') {
@@ -196,8 +198,7 @@ void testStack_checkingBalanecedParentheses() {
 	}
 }
 
-void testStack_evaluatingArithmeticExpressions() {
-	string expression = "(((6+9)/3)*(6-4))";
+void testStack_evaluatingArithmeticExpressions(string expression) {
 	NodeStack<double> numbers;
 	NodeStack<char> operators;
 
@@ -238,4 +239,102 @@ void testStack_evaluatingArithmeticExpressions() {
 	}
 	numbers.print();
 	cout << numbers.top() << endl;
+}
+
+void testStack_evaluatingPostfixExpressions(string expression) {
+	NodeStack<double> stack;
+
+	for (char c : expression) {
+		if (isdigit(c)) {
+			stack.push(c - '0');
+		}
+		else if (c == ' ') {
+			continue;
+		}
+		else {
+			double number1 = stack.pop();
+			double number2 = stack.pop();
+
+			switch (c) {
+			case '+':
+				number2 += number1;
+				break;
+			case '-':
+				number2 -= number1;
+				break;
+			case '*':
+				number2 *= number1;
+				break;
+			case '/':
+				number2 /= number1;
+				break;
+			}
+
+			stack.push(number2);
+		}
+
+		cout << c << endl;
+		stack.print();
+	}
+}
+
+void testStack_translatingInfixToPostfixNotation(string expression) {
+	NodeStack<char> stack;
+	string postExpression = "";
+
+	cout << "Start Scan!" << endl << endl;
+
+	for (char c : expression) {
+		switch (c) {
+		case ' ':
+			continue;
+		case '(':
+			stack.push(c);
+			break;
+		case '+':
+		case '-':
+			if (!stack.empty() && strchr("+-", stack.top()) != NULL)  {
+				postExpression += stack.pop();
+				postExpression += ' ';
+				stack.push(c);
+				break;
+			}
+		case '*':
+		case '/':
+			if (!stack.empty() && strchr("*/", stack.top()) != NULL) {
+				postExpression += stack.pop();
+				postExpression += ' ';
+				stack.push(c);
+				break;
+			}
+			else {
+				stack.push(c);
+				break;
+			}
+		case ')':
+			while (stack.top() != '(') {
+				postExpression += stack.pop();
+				postExpression += ' ';
+			}
+			stack.pop();
+			break;
+		default:
+			postExpression += c;
+			postExpression += ' ';
+			break;
+		}
+
+		cout << c << endl;
+		stack.print();
+		cout << postExpression << endl << endl;
+	}
+
+	cout << "End Scan!" << endl << endl;
+
+	while (!stack.empty()) {
+		postExpression += stack.pop();
+		postExpression += ' ';
+		stack.print();
+		cout << postExpression << endl << endl;
+	}
 }
