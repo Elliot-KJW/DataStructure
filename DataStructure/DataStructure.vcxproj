@@ -138,6 +138,16 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="List\ArrayList.hpp" />
+    <ClInclude Include="List\LinkedList.hpp" />
+    <ClInclude Include="Node\Node.hpp" />
+    <ClInclude Include="Node\Node_iterator.hpp" />
+    <ClInclude Include="Queue\ArrrrayQueue.hpp" />
+    <ClInclude Include="Stack\ArrayStack.hpp" />
+    <ClInclude Include="Stack\NodeStack.hpp" />
+    <ClInclude Include="Test\main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

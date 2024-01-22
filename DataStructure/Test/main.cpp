@@ -1,4 +1,4 @@
-﻿#include "../List/ArrayList.hpp"
+#include "../List/ArrayList.hpp"
 #include "../List/LinkedList.hpp"
 #include "../Stack/ArrayStack.hpp"
 #include "../Stack/NodeStack.hpp"
