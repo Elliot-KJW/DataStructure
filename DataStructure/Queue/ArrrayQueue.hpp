@@ -29,12 +29,12 @@ public:
 		return (this->count == 0);
 	}
 
-	T& front() const {
+	T front() const {
 		assert(!this->empty());
 		return this->data[this->first];
 	}
 
-	T& rear() const {
+	T rear() const {
 		assert(!this->empty());
 		return this->data[this->last];
 	}
