@@ -2,7 +2,7 @@
 #include "../List/LinkedList.hpp"
 #include "../Stack/ArrayStack.hpp"
 #include "../Stack/NodeStack.hpp"
-#include "../Queue/ArrrayQueue.hpp"
+#include "../Queue/ArrayQueue.hpp"
 #include "../Queue/NodeQueue.hpp"
 
 using namespace std;
