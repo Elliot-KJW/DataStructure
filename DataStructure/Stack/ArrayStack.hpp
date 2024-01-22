@@ -23,7 +23,7 @@ public:
 		data[used++] = entry;
 	}
 
-	T top() {
+	T& top() {
 		assert(!this->empty());
 		return this->data[used - 1];
 	}
