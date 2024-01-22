@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Node.hpp"
+#include "Node/Node.hpp"
 
 template <typename T>
 class NodeStack {

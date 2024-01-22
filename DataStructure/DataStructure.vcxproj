@@ -127,15 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrrrayQueue.hpp" />
     <ClCompile Include="LinkedList.hpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node_iterator.hpp" />
     <ClCompile Include="ArrayStack.hpp" />
+    <ClCompile Include="Test\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayList.hpp" />
+    <ClInclude Include="List\ArrayList.hpp" />
+    <ClInclude Include="List\LinkedList.hpp" />
     <ClInclude Include="Node.hpp" />
     <ClInclude Include="NodeStack.hpp" />
+    <ClInclude Include="Node\Node.hpp" />
+    <ClInclude Include="Node\Node_iterator.hpp" />
+    <ClInclude Include="Queue\ArrrrayQueue.hpp" />
+    <ClInclude Include="Stack\ArrayStack.hpp" />
+    <ClInclude Include="Stack\NodeStack.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
