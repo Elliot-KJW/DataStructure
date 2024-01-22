@@ -23,11 +23,12 @@
     <ClInclude Include="List\LinkedList.hpp" />
     <ClInclude Include="Node\Node.hpp" />
     <ClInclude Include="Node\Node_iterator.hpp" />
-    <ClInclude Include="Queue\ArrrrayQueue.hpp" />
+    <ClInclude Include="Queue\ArrrayQueue.hpp" />
     <ClInclude Include="Stack\ArrayStack.hpp" />
     <ClInclude Include="Stack\NodeStack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Queue\NodeQueue.hpp" />
     <ClCompile Include="Test\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

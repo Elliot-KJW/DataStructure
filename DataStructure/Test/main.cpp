@@ -2,6 +2,8 @@
 #include "../List/LinkedList.hpp"
 #include "../Stack/ArrayStack.hpp"
 #include "../Stack/NodeStack.hpp"
+#include "../Queue/ArrrayQueue.hpp"
+#include "../Queue/NodeQueue.hpp"
 
 using namespace std;
 
@@ -11,14 +13,15 @@ void testStack_checkingBalanecedParentheses(string expression);
 void testStack_evaluatingArithmeticExpressions(string expression);
 void testStack_evaluatingPostfixExpressions(string expression);
 void testStack_translatingInfixToPostfixNotation(string expression);
-
+void testQueue_Palindroms(string str);
 
 int main() {
 	//testArrayList();
 	//testLinkedList();
 	//testStack_checkingBalanecedParentheses("(((6+9)/3)*(6-4))");
 	//testStack_evaluatingArithmeticExpressions("(((6+9)/3)*(6-4))");
-	testStack_translatingInfixToPostfixNotation("3 * X + ( Y - 12 ) - Z");
+	//testStack_translatingInfixToPostfixNotation("3 * X + ( Y - 12 ) - Z");
+	testQueue_Palindroms("ra11ddar");
 	return 0;
 }
 
@@ -337,4 +340,29 @@ void testStack_translatingInfixToPostfixNotation(string expression) {
 		stack.print();
 		cout << postExpression << endl << endl;
 	}
+}
+
+void testQueue_Palindroms(string str) {
+	NodeStack<char> s;
+	NodeQueue<char> q, qq;
+	bool isPalindroms = true;
+
+	for (char c : str) {
+		s.push(c);
+		qq.enqueue(c);
+	}
+
+	q = qq;
+
+	while(s.size() > 0) {
+		cout << s.top() << endl;
+		cout << q.front() << endl;
+
+		if (s.pop() != q.dequeue()) {
+			isPalindroms = false;
+		}
+		cout << endl;
+	}
+
+	cout << ((isPalindroms == true) ? "true" : "false") << endl;
 }
