@@ -1,7 +1,7 @@
-﻿#include "ArrayList.hpp"
-#include "LinkedList.hpp"
-#include "ArrayStack.hpp"
-#include "NodeStack.hpp"
+﻿#include "../List/ArrayList.hpp"
+#include "../List/LinkedList.hpp"
+#include "../Stack/ArrayStack.hpp"
+#include "../Stack/NodeStack.hpp"
 
 using namespace std;
 
