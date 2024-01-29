@@ -28,6 +28,7 @@
     <ClInclude Include="Stack\NodeStack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Node\BTNode.hpp" />
     <ClCompile Include="Test\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
