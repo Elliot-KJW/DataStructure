@@ -31,7 +31,7 @@ public:
 		return this->left_field;
 	}
 
-	const BTNode*& left() const {
+	const BTNode* left() const {
 		return this->left_field;
 	}
 
@@ -39,7 +39,7 @@ public:
 		return this->right_field;
 	}
 
-	const BTNode*& right() const {
+	const BTNode* right() const {
 		return this->right_field;
 	}
 
@@ -63,7 +63,7 @@ public:
 
 template <typename T>
 void tree_clear(BTNode<T>*& root_ptr) {
-	if (root_ptr == NULL) {
+	if (root_ptr != NULL) {
 		tree_clear(root_ptr->left());
 		tree_clear(root_ptr->right());
 		delete root_ptr;
@@ -113,13 +113,48 @@ void postorder(Process f, const BTNode<T>* root_ptr) {
 }
 
 template <typename T, typename SizeType>
-void print(const BTNode<T>* root_ptr, SizeType depth) {
+void tree_print(const BTNode<T>* root_ptr, SizeType depth) {
 	//printing the nodes in a tree-like (90` rotated) form
 
 	if (root_ptr != NULL) {
-		print(root_ptr->right(), depth + 1);
-		std::cout << setw(4 * depth) << "" << root_ptr->data() << std::endl;
-		print(root_ptr->left(), depth + 1);
+		tree_print(root_ptr->right(), depth + 1);
+		std::cout << std::setw(4 * depth) << "" << root_ptr->data() << std::endl;
+		tree_print(root_ptr->left(), depth + 1);
 	}
 }
 
+template <typename T>
+void bst_remove(BTNode<T>*& root_ptr, const T& target) {
+	if (root_ptr == NULL) return;
+
+	if (target < root_ptr->data()) {
+		bst_remove(root_ptr->left(), target);
+	}
+	else if (target > root_ptr->data()) {
+		bst_remove(root_ptr->right(), target);
+	}
+	else {
+		if (root_ptr->left() == NULL) {
+			BTNode<T>*& oldroot_ptr = root_ptr;
+			root_ptr = root_ptr->right();
+			delete root_ptr;
+		}
+		else {
+			bst_remove_max(root_ptr->left(), root_ptr->data());
+		}
+	}
+}
+
+template <typename T>
+void bst_remove_max(BTNode<T>*& root_ptr, T& removed) {
+	if (root_ptr->right() == NULL) {
+		removed = root_ptr->data();
+		BTNode<T>*& oldroot_ptr = root_ptr;
+		root_ptr = root_ptr->left();
+		delete oldroot_ptr;
+	}
+	else {
+		bst_remove_max(root_ptr->right(), removed);
+	}
+
+}

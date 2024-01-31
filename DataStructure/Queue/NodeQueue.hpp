@@ -8,6 +8,7 @@ public:
 	NodeQueue() {
 		this->count = 0;
 		this->front_ptr = NULL;
+		this->rear_ptr = NULL;
 	}
 
 	NodeQueue(const NodeQueue<T>& source) {

@@ -44,5 +44,8 @@
     <ClCompile Include="Node\BTNode.hpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Tree\BSTree.hpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

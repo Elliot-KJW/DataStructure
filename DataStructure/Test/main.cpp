@@ -4,6 +4,7 @@
 #include "../Stack/NodeStack.hpp"
 #include "../Queue/ArrayQueue.hpp"
 #include "../Queue/NodeQueue.hpp"
+#include "../Tree/BSTree.hpp"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ void testStack_evaluatingArithmeticExpressions(string expression);
 void testStack_evaluatingPostfixExpressions(string expression);
 void testStack_translatingInfixToPostfixNotation(string expression);
 void testQueue_Palindroms(string str);
+void testBSTree();
 
 int main() {
 	//testArrayList();
@@ -21,7 +23,8 @@ int main() {
 	//testStack_checkingBalanecedParentheses("(((6+9)/3)*(6-4))");
 	//testStack_evaluatingArithmeticExpressions("(((6+9)/3)*(6-4))");
 	//testStack_translatingInfixToPostfixNotation("3 * X + ( Y - 12 ) - Z");
-	testQueue_Palindroms("ra11ddar");
+	//testQueue_Palindroms("ra11ddar");
+	testBSTree();
 	return 0;
 }
 
@@ -365,4 +368,17 @@ void testQueue_Palindroms(string str) {
 	}
 
 	cout << ((isPalindroms == true) ? "true" : "false") << endl;
+}
+
+void testBSTree() {
+	BSTree<int> tree;
+	tree.insert(45);
+	tree.insert(53);
+	tree.insert(51);
+	tree.insert(54);
+	tree.print(0);
+
+	tree.erase_one(45);
+	tree.print(0);
+
 }
