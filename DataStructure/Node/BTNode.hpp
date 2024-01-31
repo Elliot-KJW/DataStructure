@@ -135,9 +135,9 @@ void bst_remove(BTNode<T>*& root_ptr, const T& target) {
 	}
 	else {
 		if (root_ptr->left() == NULL) {
-			BTNode<T>*& oldroot_ptr = root_ptr;
+			BTNode<T>* oldroot_ptr = root_ptr;
 			root_ptr = root_ptr->right();
-			delete root_ptr;
+			delete oldroot_ptr;
 		}
 		else {
 			bst_remove_max(root_ptr->left(), root_ptr->data());
@@ -149,12 +149,20 @@ template <typename T>
 void bst_remove_max(BTNode<T>*& root_ptr, T& removed) {
 	if (root_ptr->right() == NULL) {
 		removed = root_ptr->data();
-		BTNode<T>*& oldroot_ptr = root_ptr;
+		BTNode<T>* oldroot_ptr = root_ptr;
 		root_ptr = root_ptr->left();
 		delete oldroot_ptr;
 	}
 	else {
 		bst_remove_max(root_ptr->right(), removed);
 	}
+}
 
+template <typename T>
+size_t tree_count(BTNode<T>*& root_ptr, const T& target) {
+	if (root_ptr != NULL) {
+		size_t result = root_ptr->data() == target ? 1 : 0;
+		return result + tree_count(root_ptr->left(), target) + tree_count(root_ptr->right(), target);
+	}
+	else return 0;
 }

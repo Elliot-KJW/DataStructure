@@ -81,4 +81,28 @@ public:
 	void clear() {
 		tree_clear(root_ptr);
 	}
+
+
+	void insert_all(const BTNode<T>* tree_ptr) {
+		if (tree_ptr != NULL) {
+			insert(tree_ptr->data());
+			insert_all(tree_ptr->left());
+			insert_all(tree_ptr->right());
+		}
+	}
+
+	void operator +=(const BSTree<T>& addend) {
+		if (this == &addend) {
+			BTNode<T>* copy = tree_copy(addend.root_ptr);
+			insert_all(copy);
+			tree_clear(copy);
+		}
+		else {
+			insert_all(addend.root_ptr);
+		}
+	}
+
+	size_t count(const T& target) {
+		return tree_count(root_ptr, target);
+	}
 };

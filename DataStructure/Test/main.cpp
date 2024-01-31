@@ -376,9 +376,17 @@ void testBSTree() {
 	tree.insert(53);
 	tree.insert(51);
 	tree.insert(54);
+	tree.insert(9);
+	tree.insert(3);
+	tree.insert(17);
+	tree.insert(13);
 	tree.print(0);
 
 	tree.erase_one(45);
 	tree.print(0);
 
+	tree += tree;
+	tree.print(0);
+
+	cout << tree.count(17) << endl;
 }
