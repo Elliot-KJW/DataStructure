@@ -5,6 +5,7 @@
 #include "../Queue/ArrayQueue.hpp"
 #include "../Queue/NodeQueue.hpp"
 #include "../Tree/BSTree.hpp"
+#include "../Tree/Heap.hpp"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ void testStack_evaluatingPostfixExpressions(string expression);
 void testStack_translatingInfixToPostfixNotation(string expression);
 void testQueue_Palindroms(string str);
 void testBSTree();
+void testHeap();
 
 int main() {
 	//testArrayList();
@@ -24,7 +26,8 @@ int main() {
 	//testStack_evaluatingArithmeticExpressions("(((6+9)/3)*(6-4))");
 	//testStack_translatingInfixToPostfixNotation("3 * X + ( Y - 12 ) - Z");
 	//testQueue_Palindroms("ra11ddar");
-	testBSTree();
+	//testBSTree();
+	testHeap();
 	return 0;
 }
 
@@ -80,6 +83,9 @@ void testArrayList() {
 
 	list3 = list + list2;
 	list3.print();
+
+	cout << endl << list.remove(4) << endl;
+	list.print();
 }
 
 void testLinkedList() {
@@ -389,4 +395,22 @@ void testBSTree() {
 	tree.print(0);
 
 	cout << tree.count(17) << endl;
+}
+
+void testHeap() {
+	Heap<int> heap;
+
+	heap.insert(45);
+	heap.insert(42);
+	heap.insert(23);
+	heap.insert(35);
+	heap.insert(21);
+	heap.insert(22);
+	heap.insert(4);
+	heap.insert(19);
+	heap.insert(27);
+	heap.print();
+
+	heap.remove_top();
+	heap.print();
 }

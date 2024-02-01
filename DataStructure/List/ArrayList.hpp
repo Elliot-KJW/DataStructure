@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cassert>
 
 template <typename T>
 class ArrayList {
@@ -68,18 +69,35 @@ public:
 	}
 	
 	T& remove(T target) {
-	// precondition: used > 0
-	// postcondition: remove one Entry equal to target 
+		// precondition: used > 0
+		// postcondition: remove one Entry equal to target 
 		assert(this->used > 0);
 
 		T result;
 		for (int i = 0; i < this->used; i++) {
 			if (this->data[i] == target) {
 				result = this->data[i];
-				this->data[i] = this->data[--this->used];
+				for (int j = i; j < this->used - 1; j++) {
+					this->data[j] = this->data[j + 1];
+				}
+				this->used--;
 				break;
 			}
 		}
+
+		return result;
+	}
+
+	T& remove_location(size_t index) {
+		// precondition: used > 0 && index < size()
+		// postcondition: remove one Entry equal to location of index 
+		assert(this->used > 0 && index < size());
+
+		T result = this->data[index];
+		for (int i = index; i < this->used - 1; i++) {
+			this->data[i] = this->data[i + 1];
+		}
+		this->used--;
 
 		return result;
 	}
@@ -116,6 +134,19 @@ public:
 		}
 
 		return n;
+	}
+
+	T& locate(size_t index) {
+		assert(this->used >= index);
+		return this->data[index];
+	}
+
+	bool empty() {
+		return this->used == 0;
+	}
+
+	bool full() {
+		return used == capacity;
 	}
 
 	void print() const {

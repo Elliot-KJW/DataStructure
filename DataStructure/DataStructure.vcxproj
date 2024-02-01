@@ -31,6 +31,7 @@
     <ClCompile Include="Node\BTNode.hpp" />
     <ClCompile Include="Test\main.cpp" />
     <ClCompile Include="Tree\BSTree.hpp" />
+    <ClCompile Include="Tree\Heap.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
