@@ -35,6 +35,8 @@ public:
 		
 		tree_clear(this->root_ptr);
 		this->root_ptr = tree_copy(source.root_ptr);
+
+		return *this;
 	}
 
 	void insert(T target) {

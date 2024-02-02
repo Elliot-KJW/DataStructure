@@ -30,6 +30,7 @@ int main() {
 	//testQueue_Palindroms("ra11ddar");
 	//testBSTree();
 	//testHeap();
+	testSet();
 	return 0;
 }
 
@@ -419,6 +420,19 @@ void testHeap() {
 
 void testSet() {
 	Set<int> set;
-	set.insert(1);
+	set.insert(6);
+	set.insert(17);
+	set.insert(4);
+	set.insert(19);
+	set.insert(22);
+
+	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
 	set.print(0);
+	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
+
+	set.insert(12);
+
+	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
+	set.print(0);
+	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
 }
