@@ -36,6 +36,9 @@
     <ClInclude Include="Stack\NodeStack.hpp">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Queue\NodeQueue.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test\main.cpp">
@@ -48,6 +51,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Tree\Heap.hpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree\Set.hpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

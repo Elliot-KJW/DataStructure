@@ -68,15 +68,15 @@ public:
 		data[this->used++] = newEntry;
 	}
 	
-	T& remove(T target) {
+	T* remove(T target) {
 		// precondition: used > 0
 		// postcondition: remove one Entry equal to target 
 		assert(this->used > 0);
 
-		T result;
+		T* result = NULL;
 		for (int i = 0; i < this->used; i++) {
 			if (this->data[i] == target) {
-				result = this->data[i];
+				result = &this->data[i];
 				for (int j = i; j < this->used - 1; j++) {
 					this->data[j] = this->data[j + 1];
 				}
@@ -93,8 +93,8 @@ public:
 		// postcondition: remove one Entry equal to location of index 
 		assert(this->used > 0 && index < size());
 
-		T result = this->data[index];
-		for (int i = index; i < this->used - 1; i++) {
+		T& result = this->data[index];
+		for (size_t i = index; i < this->used - 1; i++) {
 			this->data[i] = this->data[i + 1];
 		}
 		this->used--;

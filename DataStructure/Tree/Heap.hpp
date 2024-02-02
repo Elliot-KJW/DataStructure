@@ -31,7 +31,7 @@ public:
 	}
 
 	T& remove_top() {
-		T remove = data->locate(0);
+		T& remove = data->locate(0);
 
 		if (data->size() == 0) {
 			data->remove(remove); 
@@ -51,6 +51,8 @@ public:
 				index = i;
 			}
 		}
+
+		return remove;
 	}
 
 	void print() {

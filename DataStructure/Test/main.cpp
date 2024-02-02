@@ -6,6 +6,7 @@
 #include "../Queue/NodeQueue.hpp"
 #include "../Tree/BSTree.hpp"
 #include "../Tree/Heap.hpp"
+#include "../Tree/Set.hpp"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ void testStack_translatingInfixToPostfixNotation(string expression);
 void testQueue_Palindroms(string str);
 void testBSTree();
 void testHeap();
+void testSet();
 
 int main() {
 	//testArrayList();
@@ -27,7 +29,7 @@ int main() {
 	//testStack_translatingInfixToPostfixNotation("3 * X + ( Y - 12 ) - Z");
 	//testQueue_Palindroms("ra11ddar");
 	//testBSTree();
-	testHeap();
+	//testHeap();
 	return 0;
 }
 
@@ -84,7 +86,7 @@ void testArrayList() {
 	list3 = list + list2;
 	list3.print();
 
-	cout << endl << list.remove(4) << endl;
+	list.remove(4);
 	list.print();
 }
 
@@ -413,4 +415,10 @@ void testHeap() {
 
 	heap.remove_top();
 	heap.print();
+}
+
+void testSet() {
+	Set<int> set;
+	set.insert(1);
+	set.print(0);
 }

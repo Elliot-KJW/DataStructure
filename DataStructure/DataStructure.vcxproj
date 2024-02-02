@@ -24,6 +24,7 @@
     <ClInclude Include="Node\Node.hpp" />
     <ClInclude Include="Node\Node_iterator.hpp" />
     <ClInclude Include="Queue\ArrayQueue.hpp" />
+    <ClInclude Include="Queue\NodeQueue.hpp" />
     <ClInclude Include="Stack\ArrayStack.hpp" />
     <ClInclude Include="Stack\NodeStack.hpp" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <ClCompile Include="Test\main.cpp" />
     <ClCompile Include="Tree\BSTree.hpp" />
     <ClCompile Include="Tree\Heap.hpp" />
+    <ClCompile Include="Tree\Set.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
