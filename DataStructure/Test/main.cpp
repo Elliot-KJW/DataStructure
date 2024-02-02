@@ -418,21 +418,21 @@ void testHeap() {
 	heap.print();
 }
 
+void insertSet(Set<int>& set, int a) {
+	set.insert(a);
+	std::cout << "insert " << a << std::endl;
+	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
+	set.print(0);
+	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
+}
+
 void testSet() {
 	Set<int> set;
-	set.insert(6);
-	set.insert(17);
-	set.insert(4);
-	set.insert(19);
-	set.insert(22);
-
-	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
-	set.print(0);
-	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
-
-	set.insert(12);
-
-	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
-	set.print(0);
-	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
+	insertSet(set, 6);
+	insertSet(set, 17);
+	insertSet(set, 4);
+	insertSet(set, 12);
+	insertSet(set, 19);
+	insertSet(set, 22);
+	insertSet(set, 18);
 }

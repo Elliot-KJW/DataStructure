@@ -52,7 +52,7 @@ public:
 
 	void print(size_t depth) {
 		if (child_count > 0) {
-			for (size_t i = child_count - 1; i > child_count / 2; i--) {
+			for (size_t i = child_count - 1; i >= child_count / 2; i--) {
 				subset[i]->print(depth + 1);
 			}
 		}
@@ -61,18 +61,7 @@ public:
 		for (int i = 0; i < data_count - 1; i++) {
 			std::cout << data[i] << ", ";
 		}
-		std::cout << data[data_count - 1] << "]";
-
-		if (child_count > 0) {
-			size_t subset_datacount = subset[child_count / 2]->data_count;
-
-			std::cout << std::setw(MAXIMUM * 2 + 1) << "[";
-			for (int i = 0; i < subset_datacount - 1; i++) {
-				std::cout << subset[child_count / 2]->data[i] << ", ";
-			}
-			std::cout << subset[child_count / 2]->data[subset_datacount - 1] << "]";
-		}
-		std::cout << std::endl;
+		std::cout << data[data_count - 1] << "]" << std::endl;
 
 		for (int i = 0; i < child_count / 2; i++) {
 			subset[i]->print(depth + 1);
@@ -102,7 +91,7 @@ private:
 	bool is_leaf() const { return (child_count == 0); }
 	bool loose_insert(const T& entry) {
 		for (int i = 0; i <= data_count; i++) {
-			if (i == data_count) {
+			if (i == data_count || (data[i] > entry && !is_leaf())) {
 				if (is_leaf()) {
 					data[i] = entry;
 					data_count++;
