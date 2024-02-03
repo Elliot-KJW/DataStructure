@@ -426,6 +426,14 @@ void insertSet(Set<int>& set, int a) {
 	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
 }
 
+void eraseSet(Set<int>& set, int a) {
+	set.erase(a);
+	std::cout << "erase " << a << std::endl;
+	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
+	set.print(0);
+	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
+}
+
 void testSet() {
 	Set<int> set;
 	insertSet(set, 6);
@@ -435,4 +443,6 @@ void testSet() {
 	insertSet(set, 19);
 	insertSet(set, 22);
 	insertSet(set, 18);
+
+	eraseSet(set, 12);
 }
