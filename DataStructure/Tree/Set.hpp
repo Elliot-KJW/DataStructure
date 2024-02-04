@@ -42,9 +42,7 @@ public:
 		else if (data_count > MAXIMUM) {
 			Set<T> new_root;
 			new_root.subset[new_root.child_count++] = new Set<T>(*this);
-
 			*this = new_root;
-
 			fix_excess(0);
 		}
 		return true;
@@ -68,13 +66,18 @@ public:
 		}
 
 		std::cout << std::setw(MAXIMUM * depth * 6) << "[";
-		for (int i = 0; i < data_count - 1; i++) {
-			std::cout << data[i] << ", ";
+		if (data_count > 0) {
+			for (int i = 0; i < data_count - 1; i++) {
+				std::cout << data[i] << ", ";
+			}
+			std::cout << data[data_count - 1];
 		}
-		std::cout << data[data_count - 1] << "]" << std::endl;
+		std::cout << "]" << std::endl;
 
-		for (int i = 0; i < child_count / 2; i++) {
-			subset[i]->print(depth + 1);
+		if (child_count > 0) {
+			for (int i = 0; i < child_count / 2; i++) {
+				subset[i]->print(depth + 1);
+			}
 		}
 	}
 
@@ -143,6 +146,15 @@ private:
 		}
 		subset[i]->data_count = MININUM;
 		subset[i + 1]->data_count = MININUM;
+
+		if (!(subset[i]->is_leaf())) {
+			for (size_t j = 0; j < MININUM + 1; j++) {
+				subset[i + 1]->subset[j] = subset[i]->subset[MININUM + j + 1];
+			}
+			subset[i]->child_count = MININUM + 1;
+			subset[i + 1]->child_count = MININUM + 1;
+		}
+
 		child_count++;
 	}
 
@@ -176,38 +188,25 @@ private:
 					return false;
 				}
 			}
-			return false;
 		}
+		return false;
 	}
 	void fix_shortage(size_t i) {
-		if (i == 0) {
-			if (subset[i + 1]->data_count > MININUM) {
-				subset[i]->data[data_count++] = data[i];
-				data[i] = subset[i + 1]->data[0];
+		if (subset[i - 1]->child_count > MININUM) {
+			for (int j = 0; j < subset[i]->data_count; j++) {
+				subset[i]->data[j + 1] = subset[i]->data[j];
+			}
+			subset[i]->data[0] = data[i - 1];
 
-				for (int i = 0; i < subset[i + 1]->data_count - 1; i++) {
-					subset[i + 1]->data[i] = subset[i + 1]->data[i + 1];
+			data[i - 1] = subset[i - 1]->data[subset[i - 1]->data_count - 1];
+			subset[i - 1]--;
 
+			if (!(subset[i - 1]->is_leaf())) {
+				for (int j = 0; j < subset[i]->child_count; j++) {
+					subset[i]->subset[j + 1] = subset[i]->subset[j];
 				}
-				subset[i + 1]->child_count--;
-
-				if (!subset[i + 1]->is_leaf()) {
-					subset[i]->subset[subset[i]->child_count++] = subset[i + 1];
-					subset[i + 1]->data_count--;
-					for (int i = 0; i < subset[i + 1]->data_count - 1; i++) {
-						subset[i + 1]->subset[i] = subset[i + 1]->subset[i + 1];
-					}
-				}
-			}
-			else {
-
-			}
-		} else if (i < data_count) {
-			if (subset[i - 1]->data_count > MININUM) {
-
-			}
-			else {
-
+				subset[i]->subset[0] = subset[i - 1]->subset[subset[i - 1]->child_count - 1];
+				subset[i - 1]->child_count--;
 			}
 		}
 	}

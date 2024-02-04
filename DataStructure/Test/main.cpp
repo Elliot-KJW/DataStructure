@@ -419,8 +419,8 @@ void testHeap() {
 }
 
 void insertSet(Set<int>& set, int a) {
-	set.insert(a);
 	std::cout << "insert " << a << std::endl;
+	set.insert(a);
 	std::cout << "----- Set 시작 -----" << std::endl << std::endl;
 	set.print(0);
 	std::cout << std::endl << "----- Set 종료 -----" << std::endl << std::endl;
@@ -436,13 +436,21 @@ void eraseSet(Set<int>& set, int a) {
 
 void testSet() {
 	Set<int> set;
-	insertSet(set, 6);
-	insertSet(set, 17);
-	insertSet(set, 4);
-	insertSet(set, 12);
-	insertSet(set, 19);
-	insertSet(set, 22);
-	insertSet(set, 18);
-
-	eraseSet(set, 12);
+	char c;
+	while (true) {
+		cin >> c;
+		if (c == 'q') {
+			break;
+		}
+		else if (c == 'i') {
+			int i;
+			cin >> i;
+			insertSet(set, i);
+		}
+		else if (c == 'e') {
+			int i;
+			cin >> i;
+			eraseSet(set, i);
+		}
+	}
 }
