@@ -452,5 +452,8 @@ void testSet() {
 			cin >> i;
 			eraseSet(set, i);
 		}
+		else if (c == 'p') {
+			set.print(0);
+		}
 	}
 }
