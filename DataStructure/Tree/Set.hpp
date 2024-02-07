@@ -95,7 +95,7 @@ public:
 	}
 
 private:
-	static const size_t MININUM = 1;
+	static const size_t MININUM = 2;
 	static const size_t MAXIMUM = 2 * MININUM;
 	size_t data_count;
 	T data[MAXIMUM + 1];
@@ -159,6 +159,8 @@ private:
 	}
 
 	bool loose_erase(const T& target) {
+		bool result = false;
+
 		for (int i = 0; i <= data_count; i++) {
 			if (is_leaf()) {
 				if (i == data_count) {
@@ -166,14 +168,14 @@ private:
 				}
 				else if (data[i] == target) {
 					for (int j = i; j < data_count - 1; j++) {
-						data[i] = data[i + 1];
+						data[j] = data[j + 1];
 					}
 					data_count--;
 					return true;
 				}
 			}
 			else {
-				if (data[i] == target) {
+				if (i < data_count && data[i] == target) {
 					subset[i]->remove_biggest(data[i]);
 					if (subset[i]->data_count < MININUM) {
 						fix_shortage(i);
@@ -181,35 +183,93 @@ private:
 					return true;
 				}
 				else {
-					subset[i]->loose_erase(target);
+					result = subset[i]->loose_erase(target);
 					if (subset[i]->data_count < MININUM) {
 						fix_shortage(i);
 					}
-					return false;
 				}
 			}
 		}
-		return false;
+		return result;
 	}
 	void fix_shortage(size_t i) {
-		if (subset[i - 1]->child_count > MININUM) {
+		if (i > 0 && subset[i - 1]->data_count > MININUM) {
 			for (int j = 0; j < subset[i]->data_count; j++) {
 				subset[i]->data[j + 1] = subset[i]->data[j];
 			}
 			subset[i]->data[0] = data[i - 1];
+			subset[i]->data_count++;
 
 			data[i - 1] = subset[i - 1]->data[subset[i - 1]->data_count - 1];
-			subset[i - 1]--;
+			subset[i-1]->data_count--;
 
 			if (!(subset[i - 1]->is_leaf())) {
 				for (int j = 0; j < subset[i]->child_count; j++) {
 					subset[i]->subset[j + 1] = subset[i]->subset[j];
 				}
-				subset[i]->subset[0] = subset[i - 1]->subset[subset[i - 1]->child_count - 1];
+				size_t index = (subset[i - 1]->child_count - 1);
+				subset[i]->subset[0] = subset[i - 1]->subset[index];
 				subset[i - 1]->child_count--;
 			}
 		}
+		else if (i < child_count - 1 && subset[i + 1]->data_count > MININUM) {
+			subset[i]->data[subset[i]->data_count++] = data[i];
+
+			data[i] = subset[i + 1]->data[0];
+			for (int j = 0; j < subset[i + 1]->data_count - 1; j++) {
+				subset[i + 1]->data[j] = subset[i + 1]->data[j + 1];
+			}
+			subset[i + 1]->data_count--;
+
+			if (!(subset[i + 1]->is_leaf())) {
+				for (int j = 0; j < subset[i]->child_count; j++) {
+					subset[i]->subset[j + 1] = subset[i]->subset[j];
+				}
+				subset[i]->subset[0] = subset[i + 1]->subset[(subset[i + 1]->child_count - 1)];
+				subset[i + 1]->child_count--;
+			}
+		}
+		else if(i > 0 && subset[i - 1]->data_count == MININUM){
+			subset[i - 1]->data[subset[i - 1]->data_count++] = data[i - 1];
+			for (int j = i - 1; j < data_count - 1; j++) {
+				data[j] = data[j + 1];
+			}
+			data_count--;
+
+			for (int j = 0; j < subset[i]->data_count; j++) {
+				subset[i - 1]->data[subset[i - 1]->data_count++] = subset[i]->data[j];
+			}
+
+			for (int j = i; j < child_count - 1; j++) {
+				subset[j] = subset[j + 1];
+			}
+			child_count--;
+		}
+		else {
+			subset[i]->data[subset[i]->data_count++] = data[i];
+			for (int j = i; j < data_count - 1; j++) {
+				data[j] = data[j + 1];
+			}
+			data_count--;
+
+			for (int j = 0; j < subset[i + 1]->data_count; j++) {
+				subset[i]->data[subset[i]->data_count++] = subset[i + 1]->data[j];
+			}
+
+			for (int j = i + 1; j < child_count - 1; j++) {
+				subset[j] = subset[j + 1];
+			}
+			child_count--;
+		}
 	}
 	void remove_biggest(T& removed_entry) {
+		if (child_count == 0) {
+			removed_entry = data[data_count - 1];
+			data_count--;
+		}
+		else {
+			subset[child_count - 1]->remove_biggest(removed_entry);
+			fix_shortage(child_count - 1);
+		}
 	}
 };
