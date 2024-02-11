@@ -7,8 +7,23 @@
 #include "../Tree/BSTree.hpp"
 #include "../Tree/Heap.hpp"
 #include "../Tree/Set.hpp"
+#include "../Table/HashTable.hpp"
 
 using namespace std;
+
+struct test_record_type {
+	int key;
+	double data;
+
+	test_record_type() {
+
+	}
+
+	test_record_type(int key, double data) {
+		this->key = key;
+		this->data = data;
+	}
+};
 
 void testArrayList();
 void testLinkedList();
@@ -20,6 +35,7 @@ void testQueue_Palindroms(string str);
 void testBSTree();
 void testHeap();
 void testSet();
+void testHashTable();
 
 int main() {
 	//testArrayList();
@@ -30,7 +46,8 @@ int main() {
 	//testQueue_Palindroms("ra11ddar");
 	//testBSTree();
 	//testHeap();
-	testSet();
+	//testSet();
+	testHashTable();
 	return 0;
 }
 
@@ -456,4 +473,17 @@ void testSet() {
 			set.print(0);
 		}
 	}
+}
+
+void testHashTable() {
+	HashTable<test_record_type> table;
+
+	table.insert(*(new test_record_type(201, 2.5)));
+	table.insert(*(new test_record_type(1, 2.5)));
+	table.insert(*(new test_record_type(202, 2.5)));
+	table.remove(1);
+	table.insert(*(new test_record_type(1, 2.5)));
+	table.insert(*(new test_record_type(202, 2.5)));
+
+	table.print();
 }

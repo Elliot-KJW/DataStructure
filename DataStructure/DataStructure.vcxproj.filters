@@ -39,6 +39,9 @@
     <ClInclude Include="Queue\NodeQueue.hpp">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Table\HashTable.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test\main.cpp">

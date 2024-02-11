@@ -27,6 +27,7 @@
     <ClInclude Include="Queue\NodeQueue.hpp" />
     <ClInclude Include="Stack\ArrayStack.hpp" />
     <ClInclude Include="Stack\NodeStack.hpp" />
+    <ClInclude Include="Table\HashTable.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node\BTNode.hpp" />
