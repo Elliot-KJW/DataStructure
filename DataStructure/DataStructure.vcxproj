@@ -30,6 +30,7 @@
     <ClInclude Include="Table\HashTable.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graph\Graph.hpp" />
     <ClCompile Include="Node\BTNode.hpp" />
     <ClCompile Include="Test\main.cpp" />
     <ClCompile Include="Tree\BSTree.hpp" />

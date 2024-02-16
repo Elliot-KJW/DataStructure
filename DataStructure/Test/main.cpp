@@ -8,6 +8,7 @@
 #include "../Tree/Heap.hpp"
 #include "../Tree/Set.hpp"
 #include "../Table/HashTable.hpp"
+#include "../Graph/Graph.hpp"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ void testBSTree();
 void testHeap();
 void testSet();
 void testHashTable();
+void testGraph();
 
 int main() {
 	//testArrayList();
@@ -47,7 +49,8 @@ int main() {
 	//testBSTree();
 	//testHeap();
 	//testSet();
-	testHashTable();
+	//testHashTable();
+	testGraph();
 	return 0;
 }
 
@@ -486,4 +489,15 @@ void testHashTable() {
 	table.insert(*(new test_record_type(202, 2.5)));
 
 	table.print();
+}
+
+void testGraph() {
+	Graph<int> graph;
+
+	graph.print();
+	graph.add_vertex(10);
+	graph.add_vertex(22);
+	graph.add_edge(0, 1);
+	graph.print();
+
 }
